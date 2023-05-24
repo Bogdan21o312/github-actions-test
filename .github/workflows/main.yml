@@ -19,4 +19,4 @@ jobs:
           server-dir: /home/caitkoro/majorca.com.ua/safe-space/
           username: caitkoro_safe_space
           password: j27nJzhX27RM
-          local-dir: dist/
+          local-dir: public_html/
