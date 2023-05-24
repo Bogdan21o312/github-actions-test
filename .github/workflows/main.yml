@@ -1,16 +1,22 @@
-name: CI -> Deploy to My website
+name: Deploy to FTP
+
 on:
   push:
-    branches: [ master, Development ]
+    branches:
+      - master
+
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: kevinpainchaud/simple-ftp-deploy-action@v1.2.1
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Deploy to FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
-          ftp_host: caitkoro.ftp.tools
-          ftp_username: caitkoro_safe_space
-          ftp_password: j27nJzhX27RM
-          local_source_dir: "./public_html"
-          dist_target_dir: "/home/caitkoro/majorca.com.ua/safe-space/"
-          delete: "true"
+          server: caitkoro.ftp.tools
+          server-dir: /home/caitkoro/majorca.com.ua/safe-space/
+          username: caitkoro_safe_space
+          password: j27nJzhX27RM
+          local-dir: dist/
