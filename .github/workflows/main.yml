@@ -1,13 +1,16 @@
+name: CI -> Deploy to My website
 on:
   push:
     branches: [ master, Development ]
 jobs:
-  uses: kevinpainchaud/simple-ftp-deploy-action@v1.2.1
-  with:
-    ftp_host: caitkoro.ftp.tools
-    ftp_username: caitkoro_safe_space
-    ftp_password: j27nJzhX27RM
-    local_source_dir: "./public_html"
-    dist_target_dir: "/home/caitkoro/majorca.com.ua/safe-space/"
-    delete: "true"
-    exclude: "'^logs/' '^README.md'"
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: kevinpainchaud/simple-ftp-deploy-action@v1.2.1
+        with:
+          ftp_host: caitkoro.ftp.tools
+          ftp_username: caitkoro_safe_space
+          ftp_password: j27nJzhX27RM
+          local_source_dir: "./public_html"
+          dist_target_dir: "/home/caitkoro/majorca.com.ua/safe-space/"
+          delete: "true"
